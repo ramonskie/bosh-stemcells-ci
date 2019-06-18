@@ -644,8 +644,15 @@ jobs:
   serial: true
 - name: notify-of-usn
   plan:
+  - get: bosh-stemcells-ci
+  - get: bosh-linux-stemcell-builder-master
   - get: bionic-usn
     trigger: true
+  - task: write-usn-message
+    input_mapping:
+      usn-source: bionic-usn
+      bosh-linux-stemcell-builder: bosh-linux-stemcell-builder-master
+    file: bosh-stemcells-ci/tasks/write-usn-message.yml
   - config:
       image_resource:
         source:
@@ -705,7 +712,7 @@ resource_types:
 resources:
 - name: bosh-stemcells-ci
   source:
-    branch: master
+    branch: write-usn-message
     uri: https://github.com/cloudfoundry/bosh-stemcells-ci
   type: git
 - name: bats
