@@ -2,14 +2,15 @@
 
 git clone bosh-linux-stemcell-builder bosh-linux-stemcell-builder-out
 
-USN_URL="$(jq .url "usn-source/usn.json")"
+usn_json="usn-source.json"
 
 commit_body=$(cat <<EOF
-- $(jq .title "usn-source/usn.json")
-  url: $(jq .url "usn-source/usn.json")
-  priorities: $(jq .priorities "usn-source/usn.json")
-  description: $(jq .description "usn-source/usn.json")
-  cves: $(jq .cves "usn-source/usn.json")
+- "$(jq .title "${usn_json}")"
+  url: $(jq .url "${usn_json}")
+  priorities: $(jq '.priorities | join(",")' "${usn_json}")
+  description: $(jq .description "${usn_json}")
+  cves:
+    $(jq '.cves[] | "* \(.)"' "${usn_json}"
 EOF
 )
 
