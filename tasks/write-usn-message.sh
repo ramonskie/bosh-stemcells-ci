@@ -9,7 +9,7 @@ url: $(jq .url "${usn_json}")
 priorities: $(jq '.priorities | join(",")' "${usn_json}")
 description: $(jq .description "${usn_json}")
 cves:
-  $(jq '.cves[] | "* \(.)"' "${usn_json}"
+  $(jq '.cves[] | "* \(.)"' "${usn_json}")
 EOF
 )
 
