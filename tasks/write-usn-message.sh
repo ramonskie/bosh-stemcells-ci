@@ -2,7 +2,7 @@
 
 git clone bosh-linux-stemcell-builder bosh-linux-stemcell-builder-out
 
-usn_json="usn-source/usn.json"
+usn_json="${PWD}/usn-source/usn.json"
 
 commit_body=$(cat <<EOF
 url: $(jq .url "${usn_json}")
