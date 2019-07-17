@@ -47,7 +47,7 @@
       - get: bosh-linux-stemcell-builder
         resource: bosh-linux-stemcell-builder-((group))
     - task: create-story
-      file: bosh-stemcells-ci/pipelines/ubuntu-xenial/((group))/tasks/create-story.yml
+      file: bosh-stemcells-ci/tasks/create-story.yml
       params:
         BRANCH: ubuntu-xenial/((group))
         PROJECT_ID: ((story_creator_tracker_project_id))
@@ -87,7 +87,7 @@
         usn-source: xenial-usn
         usn-log-in: usn-log-((group))
     - task: create-story
-      file: bosh-stemcells-ci/pipelines/ubuntu-xenial/((group))/tasks/create-story.yml
+      file: bosh-stemcells-ci/tasks/create-story.yml
       params:
         BRANCH: ubuntu-xenial/((group))
         PROJECT_ID: ((story_creator_private_tracker_project_id))
